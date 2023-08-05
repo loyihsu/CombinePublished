@@ -2,11 +2,15 @@
 import XCTest
 
 final class CombinePublishedTests: XCTestCase {
-    func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
+    func test_CombinePublished_noRetainCycle() throws {
+        let testObject = TestObject()
+        let publisher = CombinePublished(wrapped: testObject)
 
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+        addTeardownBlock { [weak testObject, weak publisher] in
+            XCTAssertNil(testObject)
+            XCTAssertNil(publisher)
+        }
     }
 }
+
+private class TestObject {}
