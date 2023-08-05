@@ -1,7 +1,12 @@
 #!/bin/bash
-swift package --allow-writing-to-directory ./docs \
-    generate-documentation --target CombinePublished \
-    --disable-indexing \
-    --transform-for-static-hosting \
-    --hosting-base-path CombinePublished \
-    --output-path ./docs
+
+mkdir ./docs-temp
+
+xcodebuild docbuild -scheme CombinePublished \
+    -destination generic/platform=iOS \
+    OTHER_DOCC_FLAGS="--transform-for-static-hosting --hosting-base-path CombinePublished" \
+    DOCC_OUTPUT_DIR=./docs-temp
+
+rm -r ./docs/*
+mv ./docs-temp/CombinePublished.doccarchive/* ./docs
+rm -r ./docs-temp
