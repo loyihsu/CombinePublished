@@ -5,6 +5,9 @@
 //  Created by Loyi Hsu on 2023/8/5.
 //
 
+#if canImport(UIKit)
+    import UIKit
+#endif
 import OSLog
 
 /// A wrapper class that allows for defining endpoints for creation of combine publishers.
@@ -28,4 +31,14 @@ public class CombinePublished<Wrapped: AnyObject> {
         let className = "\(self.self)"
         Logger().info("\(className) is deinited.")
     }
+
+    // MARK: - Gesture
+
+    var onGesture: (() -> Void)?
+
+    #if canImport(UIKit)
+        @objc func gestureDidDetect(sender _: UIGestureRecognizer) {
+            onGesture?()
+        }
+    #endif
 }
