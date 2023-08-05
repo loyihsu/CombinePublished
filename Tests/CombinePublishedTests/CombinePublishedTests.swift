@@ -1,3 +1,10 @@
+//
+//  CombinePublishedTests.swift
+//  CombinePublishedTests
+//
+//  Created by Yu-Sung Loyi Hsu on 2023/8/6.
+//
+
 import Combine
 @testable import CombinePublished
 import XCTest
