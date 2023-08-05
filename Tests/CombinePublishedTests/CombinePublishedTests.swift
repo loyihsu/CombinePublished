@@ -2,9 +2,9 @@
 import XCTest
 
 final class CombinePublishedTests: XCTestCase {
-    func test_CombinePublished_noRetainCycle() throws {
+    func test_CombinePublished_noRetainCycle() {
         let testObject = TestObject()
-        let publisher = CombinePublished(wrapped: testObject)
+        let publisher = ObjectPublished(wrapped: testObject)
 
         addTeardownBlock { [weak testObject, weak publisher] in
             XCTAssertNil(testObject)

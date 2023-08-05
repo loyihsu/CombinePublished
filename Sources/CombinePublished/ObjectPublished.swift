@@ -1,5 +1,5 @@
 //
-//  CombinePublishable.swift
+//  ObjectPublished.swift
 //  CombinePublished
 //
 //  Created by Loyi Hsu on 2023/8/5.
@@ -11,7 +11,7 @@
 import OSLog
 
 /// A wrapper class that allows for defining endpoints for creation of combine publishers.
-public class CombinePublished<Wrapped: AnyObject> {
+public class ObjectPublished<Wrapped: AnyObject> {
     // MARK: - Base
 
     /// Holds a weak reference to the corresponding wrapped object.

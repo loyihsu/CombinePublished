@@ -10,9 +10,9 @@
     import OSLog
     import UIKit
 
-    extension UIView: CombinePublishable {}
+    extension UIView: ObjectPublishable {}
 
-    public extension CombinePublished where Wrapped == UIView {
+    public extension ObjectPublished where Wrapped == UIView {
         /// Adds a tap gesture recogniser and returns a publisher.
         var tap: AnyPublisher<Void, Never> {
             let publisher = PassthroughSubject<Void, Never>()
