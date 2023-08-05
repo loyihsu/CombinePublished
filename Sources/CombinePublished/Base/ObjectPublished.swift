@@ -34,14 +34,4 @@ public class ObjectPublished<Wrapped: AnyObject> {
         let className = "\(self.self)"
         Logger().info("\(className) is deinited.")
     }
-
-    // MARK: - Gesture
-
-    var onGesture: (() -> Void)?
-
-    #if canImport(UIKit)
-        @objc func gestureDidDetect(sender _: UIGestureRecognizer) {
-            onGesture?()
-        }
-    #endif
 }

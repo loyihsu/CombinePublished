@@ -17,16 +17,37 @@
 
             // Gesture action is registered in the CombinePublished object,
             // which will be called from `gestureDidDetect`.
-            onGesture = { [weak publisher] in
+            let onGesture = { [weak publisher] in
                 Logger().debug("tap gesture detected")
                 publisher?.send(())
             }
 
+            let action = TargetAction(closure: onGesture)
+
             let tapGestureRecongniser = UITapGestureRecognizer()
-            tapGestureRecongniser.addTarget(self, action: #selector(gestureDidDetect))
+            tapGestureRecongniser.addAction(action)
             wrapped!.addGestureRecognizer(tapGestureRecongniser)
 
             return publisher.eraseToAnyPublisher()
         }
     }
 #endif
+
+class TargetAction {
+    var closure: () -> Void
+
+    init(closure: @escaping () -> Void) {
+        self.closure = closure
+    }
+
+    @objc func execute() {
+        closure()
+    }
+}
+
+extension UIGestureRecognizer {
+    func addAction(_ targetAction: TargetAction) {
+        addTarget(targetAction, action: #selector(targetAction.execute))
+        Objc.retain(from: self, to: targetAction)
+    }
+}
