@@ -5,7 +5,7 @@
 //  Created by Loyi Hsu on 2023/8/5.
 //
 
-/// A protocol that allows creation of ``CombinePublished`` objects.
+/// A protocol that allows creation of ``ObjectPublished`` objects.
 public protocol ObjectPublishable {}
 
 public extension ObjectPublishable where Self: AnyObject {

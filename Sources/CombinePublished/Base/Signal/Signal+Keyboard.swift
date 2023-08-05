@@ -42,31 +42,37 @@
     }
 
     public extension Signal {
+        /// A publisher for `UIResponder.keyboardWillShowNotification`.
         var keyboardWillShow: AnyPublisher<Void, Never> {
             keyboardWillShowSignal
                 .eraseToAnyPublisher()
         }
 
+        /// A publisher for `UIResponder.keyboardDidShowNotification`.
         var keyboardDidShow: AnyPublisher<Void, Never> {
             keyboardDidShowSignal
                 .eraseToAnyPublisher()
         }
 
+        /// A publisher for `UIResponder.keyboardDidChangeFrameNotification`.
         var keyboardDidChangeFrame: AnyPublisher<Void, Never> {
             keyboardDidChangeFrameSignal
                 .eraseToAnyPublisher()
         }
 
+        /// A publisher for `UIResponder.keyboardWillHideNotification`.
         var keyboardWillHide: AnyPublisher<Void, Never> {
             keyboardWillHideSignal
                 .eraseToAnyPublisher()
         }
 
+        /// A publisher for `UIResponder.keyboardDidHideNotification`.
         var keyboardDidHide: AnyPublisher<Void, Never> {
             keyboardDidHideSignal
                 .eraseToAnyPublisher()
         }
 
+        /// A publisher for indication whether the keyboard is currently onscreen.
         var isKeyboardShown: AnyPublisher<Bool, Never> {
             isKeyboardShownSignal.publisher
                 .removeDuplicates()

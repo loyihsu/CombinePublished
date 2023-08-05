@@ -19,6 +19,9 @@ public class ObjectPublished<Wrapped: AnyObject> {
     /// so this reference is weakened to prevent retain cycle.
     weak var wrapped: Wrapped?
 
+    /// Create an `ObjectPublished` object that wraps around the object.
+    /// - Tip: A helper is available for this to create an `ObjectPublished` object
+    /// through `AnyObject` using `object.publisher`.
     public init(wrapped: Wrapped) {
         self.wrapped = wrapped
 

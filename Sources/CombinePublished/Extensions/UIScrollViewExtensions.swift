@@ -12,6 +12,7 @@
                 subject.send(newValue)
             }
 
+            // Prevent the observation to be freed when still needed.
             Objc.retain(from: self, to: observation)
 
             return subject.eraseToAnyPublisher()

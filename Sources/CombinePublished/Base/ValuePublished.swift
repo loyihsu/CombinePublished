@@ -8,35 +8,20 @@
 import Combine
 
 /// A wrapper class that allows for creating an reactive container for value types.
-///
-/// To edit the values inside the container, directly set the `value` inside.
-///
-/// To access the publisher, use the `publisher` endpoint. The publishers will publish changes when the value will be changed.
-
 public class ValuePublished<WrappedValue> {
-    private var publishers: [CurrentValueSubject<WrappedValue, Never>] = []
-
+    /// The contained value. Setting this value will trigger publishing to all the subscribers.
     public var value: WrappedValue {
         willSet {
-            willSetTriggered(newValue)
+            publisher.send(newValue)
         }
     }
 
+    /// Get the publisher to subscribe to.
+    /// The publisher will publish changes when the value is going to be changed (`willSet`).
+    public lazy var publisher = CurrentValueSubject<WrappedValue, Never>(value)
+
+    /// Creates a container that can be observable with the `value`.
     public init(value: WrappedValue) {
         self.value = value
-    }
-
-    public var publisher: AnyPublisher<WrappedValue, Never> {
-        let publisher = CurrentValueSubject<WrappedValue, Never>(value)
-
-        publishers.append(publisher)
-
-        return publisher.eraseToAnyPublisher()
-    }
-
-    private func willSetTriggered(_ newValue: WrappedValue) {
-        publishers.forEach {
-            $0.send(newValue)
-        }
     }
 }

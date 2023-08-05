@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 
+/// Publishers of common signals/notifications.
 public class Signal {
     // MARK: - Properties
 
