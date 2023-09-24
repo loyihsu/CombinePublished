@@ -1,5 +1,5 @@
 //
-//  SignalPublished.swift
+//  Signal.swift
 //
 //
 //  Created by Loyi Hsu on 2023/8/5.
